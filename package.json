@@ -10,7 +10,7 @@
     "start": "node -r esm index.mjs"
   },
   "dependencies": {
-    "@hapi/joi": "^16.1.8",
+    "@hapi/joi": "^17.0.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -18,7 +18,7 @@
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.7.12"
+    "mongoose": "^5.8.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.1"
