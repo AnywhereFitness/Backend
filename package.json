@@ -7,7 +7,7 @@
   "main": "index.mjs",
   "scripts": {
     "dev": "nodemon -r esm index.mjs",
-    "start": "node --experimental-modules index.mjs"
+    "start": "node -r esm index.mjs"
   },
   "dependencies": {
     "@hapi/joi": "^17.0.0",
