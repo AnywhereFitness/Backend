@@ -40,3 +40,30 @@ headers: {
   "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTM5MTQ1Y2Q3NTRlMGEyNmU5NjNlNSIsInJvbGUiOiJpbnN0cnVjdG9yIiwiaWF0IjoxNTc4MzQyMTk1fQ.ii0YI9EYd8lS3BrcLSfyu-DJxLZZXTeGMRALw4qzRew"
 }
 ```
+
+> Mock Class in Database
+
+```
+{
+    "type": "Yoga",
+    "days": [
+      "Sunday"
+    ],
+    "intensityLevel": "Intermediate",
+    "createdAt": "2020-01-07T07:09:59.960Z",
+    "_id": "5e14306f3e7d5e15a41e448e",
+    "name": "Summertime fine",
+    "description": "These beaches ain't ready",
+    "startTime": "5:30",
+    "endTime": "6:00",
+    "duration": 30,
+    "requirements": "None",
+    "location": "The Park",
+    "size": 10,
+    "price": 15,
+    "arrivalDetails": "Arrive 10 minutes early for stretching",
+    "shouldKnowDetails": "We go hard!",
+    "instructor": "5e139145cd754e0a26e963e5",
+    "__v": 0
+  }
+```
