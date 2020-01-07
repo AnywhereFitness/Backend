@@ -3,6 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 
 import authRoute from '../routes/auth.mjs';
+import classRoute from '../routes/classes.mjs';
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use('/api/auth', authRoute);
+app.use('/api/classes', classRoute);
 
 app.use('/', (req, res) =>
   res.send(`
