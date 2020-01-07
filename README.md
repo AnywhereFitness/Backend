@@ -22,3 +22,21 @@ headers: {
   Authorization: token,
 }
 ```
+
+> Mock User in Database
+
+* **email**: *drogo@horselands.com*
+* **password**: *bloodrider*
+
+```
+{
+  "user": {
+    "id": "5e139145cd754e0a26e963e5",
+    "firstName": "Khal",
+    "lastName": "Drogo",
+    "email": "drogo@horselands.com",
+    "role": "instructor"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlMTM5MTQ1Y2Q3NTRlMGEyNmU5NjNlNSIsInJvbGUiOiJpbnN0cnVjdG9yIiwiaWF0IjoxNTc4MzQyMTk1fQ.ii0YI9EYd8lS3BrcLSfyu-DJxLZZXTeGMRALw4qzRew"
+}
+```
