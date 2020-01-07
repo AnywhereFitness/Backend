@@ -13,3 +13,12 @@
 | DELETE | /api/classes/:id            | Delete class                 |      [x]      |      [x]      |
 | POST   | /api/auth/register          | Register new user            |      [ ]      |      [ ]      |
 | POST   | /api/auth/login             | Log in user                  |      [ ]      |      [ ]      |
+
+> Login needs Authorization Header
+
+```
+headers: {
+  'Content-Type': 'application/json',
+  Authorization: token,
+}
+```
