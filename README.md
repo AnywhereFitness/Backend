@@ -1,5 +1,7 @@
 # Anywhere Fitness Backend
 
+> https://anywhere-fitness-api.herokuapp.com
+
 | Method | Endpoint                    | Description                  | Auth Required | Is Instructor |
 | ------ | --------------------------- | ---------------------------- | :-----------: | :-----------: |
 | GET    | /                           | Base endpoint                |      [ ]      |      [ ]      |
