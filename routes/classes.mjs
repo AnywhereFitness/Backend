@@ -86,7 +86,7 @@ router.delete('/:id', [verifyToken, verifyRole], async (req, res) => {
 });
 
 // Update Class
-router.patch('/:id', [verifyToken, verifyRole], async (req, res) => {
+router.put('/:id', [verifyToken, verifyRole], async (req, res) => {
   const { id } = req.params;
   try {
     const updatedClass = await Class.updateOne(
