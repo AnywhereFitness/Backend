@@ -75,14 +75,17 @@ router.post(
 );
 
 // Delete Class
-router.delete('/:id', [verifyToken, verifyRole], async (req, res) => {
-  const { id } = req.params;
-  try {
-    const removedClass = await Class.deleteOne({ _id: id });
-    res.send(removedClass);
-  } catch (error) {
-    res.status(400).send(error);
-  }
+router.delete(
+  '/:id',
+  [verifyToken, verifyRole('instructor')],
+  async (req, res) => {
+    const { id } = req.params;
+    try {
+      const removedClass = await Class.deleteOne({ _id: id });
+      res.send(removedClass);
+    } catch (error) {
+      res.status(400).send(error);
+    }
 });
 
 // Update Class
