@@ -65,6 +65,9 @@ const classSchema = new mongoose.Schema({
   shouldKnowDetails: {
     type: String
   },
+  registeredAttendees: {
+    type: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Reservation' }]
+  },
   createdAt: {
     type: Date,
     default: Date.now()
