@@ -2,17 +2,21 @@
 
 > https://anywhere-fitness-api.herokuapp.com
 
-| Method | Endpoint                    | Description                  | Auth Required | Is Instructor |
-| ------ | --------------------------- | ---------------------------- | :-----------: | :-----------: |
-| GET    | /                           | Base endpoint                |      [ ]      |      [ ]      |
-| GET    | /api/classes                | Get all classes              |      [x]      |      [ ]      |
-| GET    | /api/classes/:id            | Get classes by ID            |      [x]      |      [ ]      |
-| GET    | /api/classes/instructor/:id | Get classes by instructor ID |      [x]      |      [ ]      |
-| POST   | /api/classes                | Add class                    |      [x]      |      [x]      |
-| PUT    | /api/classes/:id            | Update class                 |      [x]      |      [x]      |
-| DELETE | /api/classes/:id            | Delete class                 |      [x]      |      [x]      |
-| POST   | /api/auth/register          | Register new user            |      [ ]      |      [ ]      |
-| POST   | /api/auth/login             | Log in user                  |      [ ]      |      [ ]      |
+| Method | Endpoint                         | Description                  | Auth Required | Is Instructor |
+| ------ | -------------------------------- | ---------------------------- | :-----------: | :-----------: |
+| GET    | /                                | Base endpoint                |      [ ]      |      [ ]      |
+| GET    | /api/client/profile              | Get client profile           |      [x]      |      [ ]      |
+| GET    | /api/client/reservations         | Get client reservations      |      [x]      |      [ ]      |
+| POST   | /api/client/reservation/:classId | Add reservation              |      [x]      |      [ ]      |
+| DELETE | /api/client/reservation/:classId | Delete reservation           |      [x]      |      [ ]      |
+| GET    | /api/classes                     | Get all classes              |      [x]      |      [ ]      |
+| GET    | /api/classes/:id                 | Get classes by ID            |      [x]      |      [ ]      |
+| GET    | /api/classes/instructor/:id      | Get classes by instructor ID |      [x]      |      [ ]      |
+| POST   | /api/classes                     | Add class                    |      [x]      |      [x]      |
+| PUT    | /api/classes/:id                 | Update class                 |      [x]      |      [x]      |
+| DELETE | /api/classes/:id                 | Delete class                 |      [x]      |      [x]      |
+| POST   | /api/auth/register               | Register new user            |      [ ]      |      [ ]      |
+| POST   | /api/auth/login                  | Log in user                  |      [ ]      |      [ ]      |
 
 > Login needs Authorization Header
 
