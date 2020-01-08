@@ -54,6 +54,14 @@ router.post(
         userId: req.user.id
       });
       const newReservation = await reservation.save();
+      await Class.updateOne(
+        { _id: classId },
+        {
+          $push: {
+            registeredAttendees: newReservation
+          }
+        }
+      );
 
       res.send(newReservation);
     } catch (error) {
