@@ -2,7 +2,7 @@ import express from 'express';
 import verifyToken from '../middleware/verifyToken.mjs';
 import verifyRole from '../middleware/verifyRole.mjs';
 import Class from '../model/Class.mjs';
-import User from '../model/User.mjs';
+import Reservation from '../model/Reservation.mjs';
 
 const router = express.Router();
 
@@ -11,20 +11,6 @@ router.get('/', verifyToken, async (req, res) => {
   try {
     const classes = await Class.find();
     res.send(classes);
-  } catch (error) {
-    res.status(400).send(error);
-  }
-});
-
-// Add Class
-router.post('/', [verifyToken, verifyRole('instructor')], async (req, res) => {
-  const data = req.body;
-
-  try {
-    // const user = await User.findById({ id: req.user.id });
-    const class_ = new Class({ ...data, instructor: req.user.id });
-    const newClass = await class_.save();
-    res.send(newClass);
   } catch (error) {
     res.status(400).send(error);
   }
@@ -51,6 +37,42 @@ router.get('/instructor/:id', verifyToken, async (req, res) => {
     res.status(400).send(error);
   }
 });
+
+// Add Class
+router.post('/', [verifyToken, verifyRole('instructor')], async (req, res) => {
+  const data = req.body;
+
+  try {
+    // const user = await User.findById({ id: req.user.id });
+    const class_ = new Class({
+      ...data,
+      instructor: req.user.id
+    });
+    const newClass = await class_.save();
+    res.send(newClass);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
+// Add Reservation
+router.post(
+  '/:id/reservation',
+  [verifyToken, verifyRole('client')],
+  async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      // const user = await User.findById({ id: req.user.id });
+      const reservation = new Reservation({ class: id, user: req.user.id });
+      const newReservation = await reservation.save();
+
+      res.send(newReservation);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  }
+);
 
 // Delete Class
 router.delete('/:id', [verifyToken, verifyRole], async (req, res) => {
