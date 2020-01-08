@@ -88,7 +88,6 @@ router.delete(
           }
         }
       );
-      console.log(removedReservation);
       res.send({
         message: `Reservation: ${removedReservation._id} deleted`
       });
