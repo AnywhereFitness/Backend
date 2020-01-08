@@ -72,19 +72,28 @@ router.post('/', [verifyToken, verifyRole('instructor')], async (req, res) => {
   }
 });
 
-// Add Reservation
-router.post(
+// Delete Reservation
+// Maybe filter by instructor id
+router.delete(
   '/:id/reservation',
-  [verifyToken, verifyRole('client')],
+  [verifyToken, verifyRole('instructor')],
   async (req, res) => {
     const { id } = req.params;
-
     try {
-      // const user = await User.findById({ id: req.user.id });
-      const reservation = new Reservation({ class: id, user: req.user.id });
-      const newReservation = await reservation.save();
-
-      res.send(newReservation);
+      const removedReservation = await Reservation.findOneAndRemove({
+        classId: id
+      });
+      await Class.updateOne(
+        { _id: id },
+        {
+          $pull: {
+            registeredAttendees: removedReservation._id
+          }
+        }
+      );
+      res.send({
+        message: `${removedReservation.deletedCount} Reservation deleted`
+      });
     } catch (error) {
       res.status(400).send(error);
     }
@@ -103,7 +112,8 @@ router.delete(
     } catch (error) {
       res.status(400).send(error);
     }
-});
+  }
+);
 
 // Update Class
 router.put(
@@ -124,6 +134,7 @@ router.put(
     } catch (error) {
       res.status(400).send(error);
     }
-});
+  }
+);
 
 export default router;
