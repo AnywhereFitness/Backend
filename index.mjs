@@ -1,13 +1,18 @@
-import app from "./api/server.mjs";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
+import app from './api/server.mjs';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 mongoose.connect(
   process.env.DB_CONNECT,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  () => console.log("connected to db")
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+  },
+  () => console.log('connected to db')
 );
 
 const port = process.env.PORT || 4000;
