@@ -89,21 +89,24 @@ router.delete(
 });
 
 // Update Class
-router.put('/:id', [verifyToken, verifyRole], async (req, res) => {
-  const { id } = req.params;
-  try {
-    const updatedClass = await Class.updateOne(
-      { _id: id },
-      {
-        $set: {
-          ...req.body
+router.put(
+  '/:id',
+  [verifyToken, verifyRole('instructor')],
+  async (req, res) => {
+    const { id } = req.params;
+    try {
+      const updatedClass = await Class.updateOne(
+        { _id: id },
+        {
+          $set: {
+            ...req.body
+          }
         }
-      }
-    );
-    res.send(updatedClass);
-  } catch (error) {
-    res.status(400).send(error);
-  }
+      );
+      res.send(updatedClass);
+    } catch (error) {
+      res.status(400).send(error);
+    }
 });
 
 export default router;
