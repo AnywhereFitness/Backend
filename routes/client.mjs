@@ -77,9 +77,20 @@ router.delete(
   async (req, res) => {
     const { classId } = req.params;
     try {
-      const removedReservation = await Reservation.deleteOne({ classId });
+      const removedReservation = await Reservation.findOneAndRemove({
+        classId
+      });
+      await Class.updateOne(
+        { _id: classId },
+        {
+          $pull: {
+            registeredAttendees: removedReservation._id
+          }
+        }
+      );
+      console.log(removedReservation);
       res.send({
-        message: `${removedReservation.deletedCount} Reservation deleted`
+        message: `Reservation: ${removedReservation._id} deleted`
       });
     } catch (error) {
       res.status(400).send(error);
