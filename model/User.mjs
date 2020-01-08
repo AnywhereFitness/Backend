@@ -29,6 +29,12 @@ const userSchema = new mongoose.Schema({
     default: 'client',
     enum: ['client', 'instructor']
   },
+  // classes: [
+  //   {
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: 'Class'
+  //   }
+  // ],
   createdAt: {
     type: Date,
     default: Date.now()
