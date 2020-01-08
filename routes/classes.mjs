@@ -38,6 +38,23 @@ router.get('/instructor/:id', verifyToken, async (req, res) => {
   }
 });
 
+// Get Reservations
+// Maybe filter by instructor id
+router.get(
+  '/:id/reservations',
+  [verifyToken, verifyRole('instructor')],
+  async (req, res) => {
+    try {
+      const reservations = await Reservation.find({
+        classId: req.params.id
+      }).select('_id classId');
+      res.send(reservations);
+    } catch (error) {
+      res.status(400).send(error);
+    }
+  }
+);
+
 // Add Class
 router.post('/', [verifyToken, verifyRole('instructor')], async (req, res) => {
   const data = req.body;
