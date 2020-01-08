@@ -27,7 +27,7 @@ headers: {
 }
 ```
 
-> Mock User in Database
+> Mock User response
 
 * **email**: *drogo@horselands.com*
 * **password**: *bloodrider*
@@ -45,29 +45,41 @@ headers: {
 }
 ```
 
-> Mock Class in Database
+> Mock Class response
 
 ```
 {
-    "type": "Yoga",
-    "days": [
-      "Sunday"
-    ],
-    "intensityLevel": "Intermediate",
-    "createdAt": "2020-01-07T07:09:59.960Z",
-    "_id": "5e14306f3e7d5e15a41e448e",
-    "name": "Summertime fine",
-    "description": "These beaches ain't ready",
-    "startTime": "5:30",
-    "endTime": "6:00",
-    "duration": 30,
-    "requirements": "None",
-    "location": "The Park",
-    "size": 10,
-    "price": 15,
-    "arrivalDetails": "Arrive 10 minutes early for stretching",
-    "shouldKnowDetails": "We go hard!",
-    "instructor": "5e139145cd754e0a26e963e5",
-    "__v": 0
-  }
+  "type": "Yoga",
+  "days": [
+    "Sunday"
+  ],
+  "intensityLevel": "Intermediate",
+  "createdAt": "2020-01-07T07:09:59.960Z",
+  "_id": "5e14306f3e7d5e15a41e448e",
+  "name": "Summertime fine",
+  "description": "These beaches ain't ready",
+  "startTime": "5:30",
+  "endTime": "6:00",
+  "duration": 30,
+  "requirements": "None",
+  "location": "The Park",
+  "size": 10,
+  "price": 15,
+  "arrivalDetails": "Arrive 10 minutes early for stretching",
+  "shouldKnowDetails": "We go hard!",
+  "instructor": "5e139145cd754e0a26e963e5",
+  "__v": 0
+}
+```
+
+> Mock Reservation response
+
+```
+{
+  "createdAt": "2020-01-08T05:27:42.798Z",
+  "_id": "5e15cc7f367a182d99a9872d",
+  "classId": "5e155cdd3079fa2b2d81a2ff",
+  "userId": "5e14cef482211a1d3f09eb72",
+  "__v": 0
+}
 ```
