@@ -1,9 +1,10 @@
 import express from 'express';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-
-import User from '../model/User.mjs';
 import { registerValidation, loginValidation } from '../validation.mjs';
+import { sendEmail } from '../helpers/sendgrid.mjs';
+import User from '../model/User.mjs';
+import Token from '../model/Token.mjs';
 
 const router = express.Router();
 
@@ -50,7 +51,7 @@ router.post('/register', async (req, res) => {
       role: newUser.role
     });
   } catch (error) {
-    res.status(400).send(error);
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -88,7 +89,8 @@ router.post('/login', async (req, res) => {
       { id: user._id, role: user.role },
       process.env.TOKEN_SECRET
     );
-    res.header('authorization', token).send({
+
+    res.header('authorization', token).json({
       user: {
         id: user._id,
         firstName: user.firstName,
@@ -99,7 +101,73 @@ router.post('/login', async (req, res) => {
       token
     });
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).json(error);
+  }
+});
+
+// Confirm token
+router.get('/verify/:token', async (req, res) => {
+  if (!req.params.token)
+    return res
+      .status(400)
+      .json({ message: 'We were unable to find a user for this token.' });
+
+  try {
+    // Find a matching token
+    const token = await Token.findOne({ token: req.params.token });
+
+    if (!token)
+      return res.status(400).json({
+        message:
+          'We were unable to find a valid token. Your token my have expired.'
+      });
+
+    const user = await User.findOne({ _id: token.userId });
+    if (!user)
+      return res
+        .status(400)
+        .json({ message: 'We were unable to find a user for this token.' });
+
+    if (user.isVerified)
+      return res
+        .status(400)
+        .json({ message: 'This user has already been verified.' });
+
+    user.isVerified = true;
+
+    await user.save();
+
+    res
+      .status(200)
+      .json({ message: 'The account has been verified. Please log in.' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+// Resend token
+router.post('/resend', async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (!user)
+      return res.status(401).json({
+        message:
+          'The email address ' +
+          req.body.email +
+          ' is not associated with any account. Double-check your email address and try again.'
+      });
+
+    if (user.isVerified)
+      return res.status(400).json({
+        message: 'This account has already been verified. Please log in.'
+      });
+
+    await sendEmail(user, req, res);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 });
 
