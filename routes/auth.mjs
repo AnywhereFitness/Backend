@@ -39,7 +39,10 @@ router.post('/register', async (req, res) => {
     });
 
     const newUser = await user.save();
-    res.send({
+
+    if (newUser.role === 'instructor') sendEmail(newUser, req, res);
+
+    res.json({
       id: newUser._id,
       firstName: newUser.firstName,
       lastName: newUser.lastName,
