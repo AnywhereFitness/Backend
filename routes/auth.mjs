@@ -76,6 +76,13 @@ router.post('/login', async (req, res) => {
     if (!validPassword)
       return res.status(400).json({ message: 'Invalid Password' });
 
+    // Make sure the user with instructor role has been verified
+    if (user.role === 'instructor' && !user.isVerified)
+      return res.status(401).json({
+        type: 'not-verified',
+        message: 'Your account has not been verified.'
+      });
+
     //  create token
     const token = jwt.sign(
       { id: user._id, role: user.role },
