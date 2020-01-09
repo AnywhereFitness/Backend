@@ -1,5 +1,5 @@
 {
-  "name": "node-auth",
+  "name": "anywhere-fitness-api",
   "version": "0.0.1",
   "description": "Node application with JWT authentication",
   "license": "MIT",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@hapi/joi": "^17.0.0",
+    "@sendgrid/mail": "^6.4.0",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
@@ -18,7 +19,8 @@
     "express": "^4.17.1",
     "helmet": "^3.21.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.8.5"
+    "mongoose": "^5.8.5",
+    "nanoid": "^2.1.9"
   },
   "devDependencies": {
     "nodemon": "^2.0.1"
