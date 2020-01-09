@@ -2,6 +2,10 @@
 
 > https://anywhere-fitness-api.herokuapp.com
 
+**BREAKING CHANGE** 
+
+* Verification token is now needed to register new user with _instructor_ role. The API for that is below
+
 | Method | Endpoint                         | Description                   | Auth Required | Is Instructor |
 | ------ | -------------------------------- | ----------------------------- | :-----------: | :-----------: |
 | GET    | /                                | Base endpoint                 |      [ ]      |      [ ]      |
