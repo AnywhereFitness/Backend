@@ -7,7 +7,8 @@
   "main": "index.mjs",
   "scripts": {
     "dev": "nodemon -r esm index.mjs",
-    "start": "node -r esm index.mjs"
+    "start": "node -r esm index.mjs",
+    "test": "mocha __tests__ --timeout 120000 -r esm --extension mjs --recursive --extension js --exit -w"
   },
   "dependencies": {
     "@hapi/joi": "^17.0.0",
@@ -23,6 +24,11 @@
     "nanoid": "^2.1.9"
   },
   "devDependencies": {
-    "nodemon": "^2.0.1"
+    "chai": "^4.2.0",
+    "jest": "^24.9.0",
+    "mocha": "^7.0.0",
+    "mongodb-memory-server": "^6.2.1",
+    "nodemon": "^2.0.1",
+    "supertest": "^4.0.2"
   }
 }
