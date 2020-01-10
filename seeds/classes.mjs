@@ -1,4 +1,4 @@
-import FitnessClass from '../model/Class.mjs';
+import Class from '../model/Class.mjs';
 
 export default (req, res) => {
   // create some Classes
@@ -22,10 +22,10 @@ export default (req, res) => {
   ];
 
   // use the Class model to insert/save
-  FitnessClass.remove({}, () => {
+  Class.remove({}, () => {
     for (fitnessClass of classes) {
-      const newFitnessClass = new FitnessClass(fitnessClass);
-      newFitnessClass.save();
+      const newClass = new Class(fitnessClass);
+      newClass.save();
     }
   });
 
